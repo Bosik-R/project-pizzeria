@@ -62,6 +62,8 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordin();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
 
       console.log('new Product: ', thisProduct);
     }
@@ -87,13 +89,9 @@
 
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
-      console.log('thisProduct.form: ', thisProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
-      console.log('thisProduct.formInputs: ', thisProduct.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
-      console.log('thisProduct.cartButton: ', thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      console.log('thisProduct.priceElem: ', thisProduct.priceElem);
     }
 
 
@@ -103,7 +101,7 @@
       /* find the clickable trigger (the element that should react to clicking) */
       const clickTrigger = thisProduct.accordionTrigger;
       //thisProduct.event = thisProduct.accordionTrigger;
-      console.log('clickTrigger', thisProduct.event);
+      console.log('clickTrigger', clickTrigger);
 
       /* START: click event listener to trigger */
       clickTrigger.addEventListener('click', function(){
@@ -132,6 +130,29 @@
           }/* END: if the active product isn't the element of thisProduct */
         }/* END LOOP: for each active product */
       });/* END: click event listener to trigger */
+    }
+    initOrderForm(){
+      const thisProduct = this;
+      console.log('initOrderForm: ', thisProduct);
+      thisProduct.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          thisProduct.processOrder();
+        });
+      }
+
+      thisProduct.cartButton.addEventListener('click', function(){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+    }
+    processOrder(){
+      const thisProduct = this;
+      console.log('processOrder: ', thisProduct);
     }
   }
 
