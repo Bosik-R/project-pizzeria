@@ -220,7 +220,6 @@
       thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
       thisProduct.priceElem.innerHTML = thisProduct.price;
-      console.log('thisProduct.params: ', thisProduct.params);
     }
 
     initAmountWidget(){
@@ -324,7 +323,6 @@
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-      console.log('thisCart.dom.toggleTrigger: ', thisCart.dom.toggleTrigger);
     }
 
     initActions(){
@@ -344,8 +342,6 @@
 
       menuContainer.appendChild(thisCart.element);
 
-
-      console.log('adding product: ', menuProduct);
     }
   }
 
