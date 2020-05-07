@@ -195,6 +195,29 @@
 
           const thisOptionImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
 
+          if (optionSelected){
+            if(!thisProduct.params[paramId]){
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              };
+            }
+            thisProduct.params[paramId].options[optionId] = option.label;
+
+            for (let image of thisOptionImages){
+              image.classList.add(classNames.menuProduct.imageVisible);
+            }
+          }
+          else {
+            for (let image of thisOptionImages){
+              image.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
+
+
+
+          /*const thisOptionImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+
           for (let image of thisOptionImages){
             image.classList.remove(classNames.menuProduct.imageVisible);
 
@@ -212,7 +235,7 @@
             else if(!optionSelected){
               image.classList.remove(classNames.menuProduct.imageVisible);
             }
-          }
+          }*/
         }
       }
 
