@@ -1,4 +1,4 @@
-import {select} from '/js/settings.js';
+import {select} from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 
 
@@ -72,22 +72,15 @@ class CartProduct{
   getData(){
     const thisCartProduct = this;
 
-    /*product.id = thisCartProduct.id;
-    product.name = thisCartProduct.name;
-    product.price = thisCartProduct.price;
-    product.priceSingle = thisCartProduct.priceSingle;
-    product.amount = thisCartProduct.amount;
-    product.params = thisCartProduct.params;*/
-
-    thisCartProduct.payload = {};
-    thisCartProduct.payload.id = thisCartProduct.id;
-    thisCartProduct.payload.name = thisCartProduct.name;
-    thisCartProduct.payload.price = thisCartProduct.price;
-    thisCartProduct.payload.priceSingle = thisCartProduct.priceSingle;
-    thisCartProduct.payload.amount = thisCartProduct.amount;
-    thisCartProduct.payload.params = thisCartProduct.params;
+    return {
+      id: thisCartProduct.id,
+      name: thisCartProduct.name,
+      price: thisCartProduct.price,
+      priceSingle: thisCartProduct.priceSingle,
+      amount: thisCartProduct.amount,
+      params: thisCartProduct.params
+    };
   }
-
 }
 
 export default CartProduct;

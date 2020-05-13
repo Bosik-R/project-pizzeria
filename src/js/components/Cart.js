@@ -1,5 +1,5 @@
-import {select, classNames, settings, templates} from '/js/settings.js';
-import utils from '/js/utils.js';
+import {select, classNames, settings, templates} from '../settings.js';
+import utils from '../utils.js';
 import CartProduct from './CartProduct.js';
 
 class Cart{
@@ -11,8 +11,6 @@ class Cart{
 
     thisCart.getElements(element);
     thisCart.initActions();
-
-    console.log('new Cart: ', thisCart);
   }
 
   getElements(element){
@@ -21,7 +19,6 @@ class Cart{
     thisCart.dom = {};
 
     thisCart.dom.wrapper = element;
-    console.log('thisCart.dom.wrapper:', thisCart.dom.wrapper);
 
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
@@ -112,9 +109,10 @@ class Cart{
       products: [],
     };
 
+
     for (let product of thisCart.products){
-      product.getData();
-      payload.products.push(product.payload);
+      const productData = product.getData();
+      payload.products.push(productData);
     }
 
     const options = {
@@ -132,6 +130,5 @@ class Cart{
       });
   }
 }
-
 
 export default Cart;

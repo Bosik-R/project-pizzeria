@@ -1,5 +1,5 @@
-import {select, classNames, templates} from '/js/settings.js';
-import utils from '/js/utils.js';
+import {select, classNames, templates} from '../settings.js';
+import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 
 class Product{
@@ -15,8 +15,6 @@ class Product{
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-
-    console.log('new Product: ', thisProduct);
   }
 
   renderInMenu(){
@@ -152,8 +150,6 @@ class Product{
 
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
-
-    //app.cart.add(thisProduct);
 
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
