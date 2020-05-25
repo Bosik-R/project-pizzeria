@@ -63,6 +63,10 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    bookingSubmit: '.booking-form',
+    starters: '[name="starter"]',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
   },
   nav: {
     links: '.main-nav a',
@@ -79,6 +83,7 @@ export const classNames = {
   },
   booking: {
     loading: 'loading',
+    forBooking: 'forBooking',
     tableBooked: 'booked',
   },
   nav: {
@@ -92,12 +97,17 @@ export const classNames = {
 export const settings = {
   hours: {
     open: 12,
-    close: 24,
+    close: 23,
   },
   amountWidget: {
     defaultValue: 1,
     defaultMin: 1,
-    defaultMax: 9,
+    defaultMax: 6,
+  },
+  amountWidgetHours: {
+    defaultValue: 1,
+    defaultMin: 1,
+    defaultMax: 11,
   },
   datePicker: {
     maxDaysInFuture: 14,

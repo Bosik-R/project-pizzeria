@@ -11,7 +11,7 @@ class DatePicker extends BaseWidget{
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
 
-    console.log('thisWidget ', thisWidget);
+    //console.log('thisWidget ', thisWidget);
 
     thisWidget.initPlugin();
   }
@@ -23,22 +23,20 @@ class DatePicker extends BaseWidget{
     thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
 
     flatpickr(thisWidget.dom.input, {
-      altInput: true,
-      dafaultDate: [thisWidget.minDate],
+      defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
 
       'disable': [
         function(date) {
-          // return true to disable
           return (date.getDay() === 1);
         }
       ],
       'locale': {
-        'firstDayOfWeek': 1 // start week on Monday
+        'firstDayOfWeek': 1
       },
 
-      onChange: function(dateStr){
+      onChange: function(selectedDates, dateStr){
         thisWidget.value = dateStr;
       },
     });
