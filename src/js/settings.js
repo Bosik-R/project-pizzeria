@@ -2,11 +2,13 @@
 
 export const select = {
   templateOf: {
+    mainPage: '#template-main-page',
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
   },
   containerOf: {
+    mainPage: '.main-wrapper',
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
@@ -71,6 +73,9 @@ export const select = {
   nav: {
     links: '.main-nav a',
   },
+  mainPage: {
+    listener: '.logo',
+  }
 };
 
 export const classNames = {
@@ -91,13 +96,23 @@ export const classNames = {
   },
   pages: {
     active: 'active',
+    subPages: '.links-wrapper',
   },
+  all: {
+    hidden: 'hidden',
+    unactive: '.unactive',
+  },
+  carousel: {
+    comments: '.comments',
+    dot: '.dot',
+    active: ' active-dot',
+  }
 };
 
 export const settings = {
   hours: {
     open: 12,
-    close: 23,
+    close: 24,
   },
   amountWidget: {
     defaultValue: 1,
@@ -132,6 +147,7 @@ export const settings = {
 };
 
 export const templates = {
+  mainPage: Handlebars.compile(document.querySelector(select.templateOf.mainPage).innerHTML),
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),

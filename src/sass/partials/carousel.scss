@@ -1,0 +1,69 @@
+.carousel-container {
+  position: relative;
+  margin: 0 -5px;
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+
+.comments {
+  display: none;
+  height: 200px;
+}
+
+.comments-wrapper {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.comments-image {
+  flex: 1;
+  height: 200px;
+  position: relative;
+  margin: 0 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+
+.comments-text {
+  flex: 2;
+  padding: 10px 20px;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.dots-row {
+  text-align: center;
+  top: 0;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active-dot {
+  background-color: #717171;
+}
+
+.fade {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.fade:hover {
+  opacity: 0.5;
+}

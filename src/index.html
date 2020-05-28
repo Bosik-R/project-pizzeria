@@ -7,6 +7,7 @@
   <title>Pizzeria</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -16,15 +17,15 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <div class="logo">
+        <div class="logo" id="main">
           <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
-        <div class="main-nav">
+        <div class="main-nav hidden unactive">
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
         </div>
-        <div id="cart" class="cart">
+        <div id="cart" class="cart hidden unactive">
           <div class="cart__summary">
             <span class="cart__total-number">5</span>
             <span class="cart__total-price">Total price: $<strong>0</strong></span>
@@ -62,6 +63,9 @@
   </header>
 
   <div id="pages">
+    <section id="main">
+      <div class="main-wrapper container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -69,6 +73,164 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
+  <script id="template-main-page" type="text/x-handlebars-template">
+    <div class="main-page">
+      <div class="links-container">
+        <div class="links-wrapper" id="order">
+          <div class="order links-image">
+            <img src="./images/main-page/pizza-1.jpg">
+          </div>
+          <div class="links-description-wrapper no-spacing">
+            <div class="links-title no-spacing subPagesLinks" >
+              <a href="#order">order online</a>
+            </div>
+            <p class="links-description">Delicious food delivered to your door</p>
+          </div>
+        </div>
+        <div class="links-wrapper" id="booking">
+          <div class="order links-image">
+            <img src="./images/main-page/pizza-2.jpg">
+          </div>
+          <div class="links-description-wrapper no-spacing">
+            <div class="links-title no-spacing subPagesLinks">
+              <a href="#order">book a table</a>
+            </div>
+            <p class="links-description">You can simply book a table online</p>
+          </div>
+        </div>
+      </div>
+      <div class="opening-hours">
+        <div class="hours-title-wrapper">
+          <h1>OPENING HOURS:<br></h1>
+          <h4>TUE-SUN, 12PM - 12AM</h4>
+        </div>
+      </div>
+      <div class="carousel-container">
+        <div class="comments fade">
+          <div class="comments-wrapper">
+            <div class="comments-image">
+              <img src="./images/main-page/pizza-3.jpg">
+            </div>
+            <div class="comments-text">
+              <h3 class="no-spacing">Simply delicious</h3>
+              <span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</span>
+              <br><br>
+              <span>- John Cusack</span>
+            </div>
+          </div>
+        </div>
+        <div class="comments fade">
+          <div class="comments-wrapper">
+            <div class="comments-image">
+              <img src="./images/main-page/pizza-3.jpg">
+            </div>
+            <div class="comments-text">
+              <h3 class="no-spacing">Amazing service, great food!!!</h3>
+              <span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+              <br><br>
+              <span>- John Rambo</span>
+            </div>
+          </div>
+        </div>
+        <div class="comments fade">
+          <div class="comments-wrapper">
+            <div class="comments-image">
+              <img src="./images/main-page/pizza-3.jpg">
+            </div>
+            <div class="comments-text">
+              <h3 class="no-spacing">Amazing service !!!</h3>
+              <span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+              <br><br>
+              <span>- John Candy</span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="dots-row">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="gallery-container">
+        <div class="gallery-image-wrapper">
+
+          <div class="gallery-image">
+            <img src="./images/main-page/pizza-4.jpg">
+            <div class="icons-middle">
+              <a class="media-icons" href="#">
+                <i class="fas fa-heart"></i>
+              </a>
+              <a class="media-icons" href="#">
+                <i class="fas fa-share-alt"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-image">
+            <img src="./images/main-page/pizza-5.jpg">
+            <div class="icons-middle">
+              <a class="media-icons" href="#">
+                <i class="fas fa-heart"></i>
+              </a>
+              <a class="media-icons" href="#">
+                <i class="fas fa-share-alt"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-image">
+            <img src="./images/main-page/pizza-6.jpg">
+            <div class="icons-middle">
+              <a class="media-icons" href="#">
+                <i class="fas fa-heart"></i>
+              </a>
+              <a class="media-icons" href="#">
+                <i class="fas fa-share-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-image-wrapper">
+          <div class="gallery-image">
+            <img src="./images/main-page/pizza-7.jpg">
+            <div class="icons-middle">
+              <a class="media-icons" href="#">
+                <i class="fas fa-heart"></i>
+              </a>
+              <a class="media-icons" href="#">
+                <i class="fas fa-share-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class="gallery-image">
+            <img src="./images/main-page/pizza-8.jpg">
+            <div class="icons-middle">
+              <a class="media-icons" href="#">
+                <i class="fas fa-heart"></i>
+              </a>
+              <a class="media-icons" href="#">
+                <i class="fas fa-share-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class="gallery-image">
+            <img src="./images/main-page/pizza-9.jpg">
+            <div class="icons-middle">
+              <a class="media-icons" href="#">
+                <i class="fas fa-heart"></i>
+              </a>
+              <a class="media-icons" href="#">
+                <i class="fas fa-share-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="bottom-link" href="#">View more on Instagram</a>
+      </div>
+    </div>
+  </script>
 
   <script id="template-booking-widget" type="text/x-handlebars-template">
     <div class="booking-widget">

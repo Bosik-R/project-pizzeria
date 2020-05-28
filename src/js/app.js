@@ -2,6 +2,7 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import MainPage from './components/MainPage.js';
 
 const app = {
   initPages: function(){
@@ -9,10 +10,12 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.hiddenElements = document.querySelectorAll(classNames.all.unactive);
 
     const idFromHash = window.location.hash.replace('#/', '');
 
-    let pageMatchingHash = thisApp.pages[0].id;
+    thisApp.defaultPage = thisApp.pages[0].id;
+    let pageMatchingHash = thisApp.defaultPage;
 
     for (let page of thisApp.pages){
       if (page.id == idFromHash){
@@ -44,12 +47,40 @@ const app = {
       page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
 
+    for (let elem of thisApp.hiddenElements){
+      elem.classList.toggle(classNames.all.hidden, pageId == thisApp.defaultPage);
+    }
+
     for (let link of thisApp.navLinks){
       link.classList.toggle(
         classNames.nav.active,
         link.getAttribute('href') == '#' + pageId
       );
     }
+  },
+
+  initMainPage: function (){
+    const thisApp = this;
+
+    const elem = document.querySelector(select.containerOf.mainPage);
+
+    thisApp.mainPage = new MainPage (elem);
+
+    thisApp.subPages = document.querySelectorAll(classNames.pages.subPages);
+
+    for (let subPage of thisApp.subPages){
+      subPage.addEventListener('click', function(){
+        const id = subPage.id;
+
+        thisApp.activatePage(id);
+      });
+    }
+    thisApp.logoLink = document.querySelector('.logo');
+
+    thisApp.logoLink.addEventListener('click', function(){
+      const clickedElement = this;
+      thisApp.activatePage(clickedElement.id);
+    });
   },
 
   initMenu: function(){
@@ -104,11 +135,11 @@ const app = {
     const thisApp = this;
 
     thisApp.initPages();
+    thisApp.initMainPage();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
   },
-
 };
 
 app.init();
