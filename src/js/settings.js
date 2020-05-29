@@ -28,6 +28,12 @@ export const select = {
     cartButton: '[href="#add-to-cart"]',
   },
   widgets: {
+    peopleAmount: {
+      input: 'input.peopleAmount',
+      linkDecrease: '.people-amount a[href="#less"]',
+      linkIncrease: '.people-amount a[href="#more"]',
+    },
+
     amount: {
       input: 'input.amount',
       linkDecrease: 'a[href="#less"]',
@@ -121,8 +127,9 @@ export const settings = {
   },
   amountWidgetHours: {
     defaultValue: 1,
-    defaultMin: 1,
+    defaultMin: 0,
     defaultMax: 11,
+    underDefaultMin: 0,
   },
   datePicker: {
     maxDaysInFuture: 14,
@@ -134,7 +141,7 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
   db: {
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     product: 'product',
     order: 'order',
     booking: 'booking',

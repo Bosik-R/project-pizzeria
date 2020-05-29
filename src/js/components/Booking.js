@@ -1,8 +1,9 @@
 import {select, templates, settings, classNames} from '../settings.js';
 import utils from '../utils.js';
-import AmountWidget from './AmountWidget.js';
+import HoursWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
+import PeopleWidget from './PeopleWidget.js';
 
 class Booking{
   constructor(wrapper){
@@ -115,6 +116,7 @@ class Booking{
     thisBooking.table = {};
     thisBooking.duration = {};
     thisBooking.hoursAmount.maxValue = settings.amountWidgetHours.defaultMax;
+    thisBooking.hoursAmount.value = settings.amountWidgetHours.defaultValue;
 
     let allAvalible = false;
 
@@ -150,23 +152,28 @@ class Booking{
           table.classList.add(classNames.booking.forBooking);
 
           let duration = 0;
+
           for (let hourBlock = thisBooking.hour; hourBlock < settings.hours.close; hourBlock += 0.5){
-            const durationCount = thisBooking.setDuration(hourBlock, tableId, duration);
+
+            if(hourBlock == 0){
+              thisBooking.hoursAmount.value = 0;
+              break;
+            }
+
+            const durationCount = thisBooking.setDuration(hourBlock, tableId);
             if(durationCount == true){
               break;
             }
+
             duration += 0.5;
           }
+
           thisBooking.table = tableId;
           thisBooking.duration = duration;
+          thisBooking.hoursAmount.value = duration;
           thisBooking.hoursAmount.maxValue = duration;
-          thisBooking.hoursAmount.value = settings.amountWidgetHours.defaultValue;
-          //console.log('thisBooking.table', thisBooking.table);
-          //console.log('thisBooking.duration', thisBooking.duration);
         }
       });
-      //console.log('thisBooking.table', thisBooking.table);
-      //console.log('thisBooking.duration', thisBooking.duration);
     }
   }
 
@@ -185,42 +192,6 @@ class Booking{
     }
   }
 
-  sendBooking(){
-    const thisBooking = this;
-
-    const url = settings.db.url + '/' + settings.db.booking;
-
-    const payload = {
-      date: thisBooking.date,
-      hour: utils.numberToHour(thisBooking.hour),
-      table: thisBooking.table,
-      duration: thisBooking.hoursAmount.value,
-      ppl: thisBooking.peopleAmount.value,
-      phoneNumber: thisBooking.dom.phone.value,
-      address: thisBooking.dom.address.value,
-      starters:[],
-    };
-    for (let starter of thisBooking.dom.starters){
-      if (starter.checked){
-        payload.starters.push(starter.value);
-      }
-    }
-    console.log('payload', payload);
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    };
-    fetch(url, options)
-      .then(function(response){
-        return response.json();
-      }).then(function(parsedResponse){
-        console.log('parsedResponse: ', parsedResponse);
-      });
-  }
 
   render(wrapper){
     const thisBooking = this;
@@ -245,16 +216,10 @@ class Booking{
   initWidget(){
     const thisBooking = this;
 
-    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
-    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.peopleAmount = new PeopleWidget(thisBooking.dom.peopleAmount);
+    thisBooking.hoursAmount = new HoursWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
-
-    thisBooking.hoursAmount.minValue = settings.amountWidgetHours.defaultMin;
-    thisBooking.hoursAmount.maxValue = settings.amountWidgetHours.defaultMax;
-
-    thisBooking.peopleAmount.minValue = settings.amountWidget.defaultMin;
-    thisBooking.peopleAmount.maxValue = settings.amountWidget.defaultMax;
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
@@ -265,6 +230,42 @@ class Booking{
       thisBooking.sendBooking();
       thisBooking.getData();
     });
+  }
+
+  sendBooking(){
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload = {
+      date: thisBooking.date,
+      hour: utils.numberToHour(thisBooking.hour),
+      table: thisBooking.table,
+      duration: thisBooking.hoursAmount.value,
+      ppl: thisBooking.peopleAmount.value,
+      phoneNumber: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+      starters:[],
+    };
+    for (let starter of thisBooking.dom.starters){
+      if (starter.checked){
+        payload.starters.push(starter.value);
+      }
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      }).then(function(parsedResponse){
+        console.log('parsedResponse: ', parsedResponse);
+      });
   }
 }
 
