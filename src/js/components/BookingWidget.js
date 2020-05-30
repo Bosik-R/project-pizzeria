@@ -14,10 +14,10 @@ class BookingWidget extends BaseWidget{
   getElements(){
     const thisWidget = this;
 
+    console.log(thisWidget.dom);
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
-
   }
 
   isValid(value){

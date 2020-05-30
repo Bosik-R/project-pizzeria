@@ -132,7 +132,6 @@ class Product{
 
     thisProduct.priceSingle = price;
     thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
-    console.log(thisProduct.amountWidget.value);
 
     thisProduct.priceElem.innerHTML = thisProduct.price;
   }
