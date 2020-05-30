@@ -198,6 +198,10 @@ class Booking{
     }
   }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bf39e2d1caf94cc307b69094002c1292ac5de846
   render(wrapper){
     const thisBooking = this;
 

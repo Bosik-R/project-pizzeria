@@ -28,6 +28,12 @@ export const select = {
     cartButton: '[href="#add-to-cart"]',
   },
   widgets: {
+    peopleAmount: {
+      input: 'input.peopleAmount',
+      linkDecrease: '.people-amount a[href="#less"]',
+      linkIncrease: '.people-amount a[href="#more"]',
+    },
+
     amount: {
       input: 'input.amount',
       linkDecrease: 'a[href="#less"]',
