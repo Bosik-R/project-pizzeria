@@ -1,7 +1,7 @@
 import {settings, select} from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 
-class AmountWidget extends BaseWidget{
+class BookingWidget extends BaseWidget{
   constructor(element){
     super(element, settings.amountWidget.defaultValue);
 
@@ -17,14 +17,21 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
+
   }
 
   isValid(value){
+    const thisWidget = this;
     return !isNaN(value)
-    && value >= settings.amountWidget.defaultMin
-    && value <= settings.amountWidget.defaultMax;
+    && value >= thisWidget.minValue
+    && value <= thisWidget.maxValue;
 
   }
+
+  parseValue(value){
+    return parseFloat(value);
+  }
+
 
   renderValue(){
     const thisWidget = this;
@@ -41,13 +48,17 @@ class AmountWidget extends BaseWidget{
 
     thisWidget.dom.linkDecrease.addEventListener('click', function(){
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value - 1);
+      thisWidget.setValue(thisWidget.value - thisWidget.numberToInDecreese);
     });
 
     thisWidget.dom.linkIncrease.addEventListener('click', function(){
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value + 1);
+      thisWidget.setValue(thisWidget.value + thisWidget.numberToInDecreese);
     });
   }
+
+  announce(){
+  }
 }
-export default AmountWidget;
+
+export default BookingWidget;

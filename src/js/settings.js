@@ -117,13 +117,21 @@ export const settings = {
   amountWidget: {
     defaultValue: 1,
     defaultMin: 1,
-    defaultMax: 6,
+    defaultMax: 10,
   },
   amountWidgetHours: {
     defaultValue: 1,
-    defaultMin: 1,
+    defaultMin: 0.5,
     defaultMax: 11,
+    numberToInDecreese: 0.5,
   },
+  amountWidgetPeople: {
+    defaultValue: 1,
+    defaultMin: 1,
+    defaultMax: 8,
+    numberToInDecreese: 1,
+  },
+
   datePicker: {
     maxDaysInFuture: 14,
   },

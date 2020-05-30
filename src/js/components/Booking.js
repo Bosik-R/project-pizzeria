@@ -1,8 +1,8 @@
 import {select, templates, settings, classNames} from '../settings.js';
 import utils from '../utils.js';
-import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
+import BookingWidget from './BookingWidget.js';
 
 class Booking{
   constructor(wrapper){
@@ -115,7 +115,8 @@ class Booking{
     thisBooking.table = {};
     thisBooking.duration = {};
     thisBooking.hoursAmount.maxValue = settings.amountWidgetHours.defaultMax;
-
+    thisBooking.hoursAmount.minValue = settings.amountWidgetHours.defaultMin;
+    thisBooking.hoursAmount.value = settings.amountWidgetHours.defaultValue;
     let allAvalible = false;
 
     if(
@@ -155,18 +156,22 @@ class Booking{
             if(durationCount == true){
               break;
             }
+            if(hourBlock == 0){
+              thisBooking.hoursAmount.minValue = 0;
+              thisBooking.hoursAmount.value = 0;
+              break;
+            }
             duration += 0.5;
+            if(duration == settings.amountWidgetHours.defaultMin){
+              thisBooking.hoursAmount.value = duration;
+            }
           }
           thisBooking.table = tableId;
           thisBooking.duration = duration;
           thisBooking.hoursAmount.maxValue = duration;
-          thisBooking.hoursAmount.value = settings.amountWidgetHours.defaultValue;
-          //console.log('thisBooking.table', thisBooking.table);
-          //console.log('thisBooking.duration', thisBooking.duration);
+          console.log('close');
         }
       });
-      //console.log('thisBooking.table', thisBooking.table);
-      //console.log('thisBooking.duration', thisBooking.duration);
     }
   }
 
@@ -245,16 +250,18 @@ class Booking{
   initWidget(){
     const thisBooking = this;
 
-    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
-    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.peopleAmount = new BookingWidget(thisBooking.dom.peopleAmount);
+    thisBooking.hoursAmount = new BookingWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
     thisBooking.hoursAmount.minValue = settings.amountWidgetHours.defaultMin;
     thisBooking.hoursAmount.maxValue = settings.amountWidgetHours.defaultMax;
+    thisBooking.hoursAmount.numberToInDecreese = settings.amountWidgetHours.numberToInDecreese;
 
-    thisBooking.peopleAmount.minValue = settings.amountWidget.defaultMin;
-    thisBooking.peopleAmount.maxValue = settings.amountWidget.defaultMax;
+    thisBooking.peopleAmount.minValue = settings.amountWidgetPeople.defaultMin;
+    thisBooking.peopleAmount.maxValue = settings.amountWidgetPeople.defaultMax;
+    thisBooking.peopleAmount.numberToInDecreese = settings.amountWidgetPeople.numberToInDecreese;
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
