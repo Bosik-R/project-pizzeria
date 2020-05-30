@@ -1,7 +1,7 @@
 import {settings, select} from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 
-class AmountWidget extends BaseWidget{
+class HoursWidget extends BaseWidget{
   constructor(element){
     super(element, settings.amountWidget.defaultValue);
 
@@ -21,9 +21,8 @@ class AmountWidget extends BaseWidget{
 
   isValid(value){
     return !isNaN(value)
-    && value >= settings.amountWidget.defaultMin
-    && value <= settings.amountWidget.defaultMax;
-
+    && value >= settings.amountWidgetHours.defaultMin
+    && value <= settings.amountWidgetHours.defaultMax;
   }
 
   renderValue(){
@@ -41,13 +40,14 @@ class AmountWidget extends BaseWidget{
 
     thisWidget.dom.linkDecrease.addEventListener('click', function(){
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value - 1);
+      thisWidget.setValue(thisWidget.value - 0.5);
     });
 
     thisWidget.dom.linkIncrease.addEventListener('click', function(){
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value + 1);
+      thisWidget.setValue(thisWidget.value + 0.5);
     });
   }
 }
-export default AmountWidget;
+
+export default HoursWidget;
