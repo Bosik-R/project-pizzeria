@@ -3,7 +3,7 @@ import BaseWidget from './BaseWidget.js';
 
 class BookingWidget extends BaseWidget{
   constructor(element){
-    super(element, settings.amountWidget.defaultValue);
+    super(element, settings.amountWidgetHours.defaultValue);
 
     const thisWidget = this;
 
@@ -14,7 +14,6 @@ class BookingWidget extends BaseWidget{
   getElements(){
     const thisWidget = this;
 
-    console.log(thisWidget.dom);
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);

@@ -154,11 +154,6 @@ class Booking{
 
           for (let hourBlock = thisBooking.hour; hourBlock < settings.hours.close; hourBlock += 0.5){
 
-            if(hourBlock == 0){
-              thisBooking.hoursAmount.value = 0;
-              break;
-            }
-
             const durationCount = thisBooking.setDuration(hourBlock, tableId);
             if(durationCount == true){
               break;
