@@ -105,7 +105,7 @@ export const classNames = {
   carousel: {
     comments: '.comments',
     dot: '.dot',
-    active: ' active-dot',
+    active: 'active-dot',
   }
 };
 

@@ -32,10 +32,10 @@ class MainPage{
       slideIndex++;
       if (slideIndex > slides.length) {slideIndex = 1;}
       for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(classNames.carousel.active, '');
+        dots[i].classList.remove(classNames.carousel.active);
       }
       slides[slideIndex-1].style.display = 'block';
-      dots[slideIndex-1].className += classNames.carousel.active;
+      dots[slideIndex-1].classList.add(classNames.carousel.active);
       setTimeout(showSlides, 3000);
     }
   }

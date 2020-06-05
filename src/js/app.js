@@ -78,8 +78,7 @@ const app = {
     thisApp.logoLink = document.querySelector('.logo');
 
     thisApp.logoLink.addEventListener('click', function(){
-      const clickedElement = this;
-      thisApp.activatePage(clickedElement.id);
+      thisApp.activatePage(thisApp.pages[0].id);
     });
   },
 
