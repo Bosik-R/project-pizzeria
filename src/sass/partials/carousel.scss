@@ -7,13 +7,18 @@
 
 .comments {
   display: none;
-  height: 200px;
+  height: auto;
 }
 
 .comments-wrapper {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .comments-image {

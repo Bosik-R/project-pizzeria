@@ -1,12 +1,15 @@
 .header {
-  padding: ($base-size * 5) 0 ($base-size * 8) 0;
+  padding: ($base-size * 5) 0 ($base-size * 7) 0;
   background: $color-dark;
   color: $color-light;
+
+  @media (max-width: 767px) {
+    padding: ($base-size * 3) 0 ($base-size * 12) 0;
+  }
 
   &__wrapper {
     position: relative;
   }
-
 }
 
 .logo {
@@ -18,13 +21,17 @@
     margin: 0 0 $base-size 0;
     font-size: ($base-size * 4);
     font-family: $font-header;
-    font-weight: $font-light;
+    font-weight: $font-bold;
     text-transform: uppercase;
+    background: $color-danger;
+    background: linear-gradient(to right, $color-secondary 20%, $color-light 25%, $color-light 48%, $color-main 70%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
-    span {
-      font-weight: $font-bold;
+    @media (max-width: 767px) {
+      font-size: ($base-size * 3);
     }
-
   }
 
   &__subtitle {
@@ -32,6 +39,10 @@
     font-size: ($base-size * 1.5);
     font-weight: $font-light;
     font-style: italic;
+
+    @media (max-width: 767px) {
+      font-size: $base-size;
+    }
   }
 
 }
@@ -39,11 +50,15 @@
 .main-nav {
   position: absolute;
   @include flex(row, flex-start, flex-start);
-  bottom: ($base-size * -8);
+  bottom: ($base-size * -7);
+
+  @media(max-width: 767px) {
+    bottom: ($base-size * -12);
+  }
 
   a {
     @extend .h2;
-    color: $color-main;
+    color: $color-light;
     text-decoration: none;
     margin-right: ($base-size * 2);
     text-align: center;
@@ -54,6 +69,7 @@
 
     &.active {
       background: lighten($color-dark, 75%);
+      color: $color-main;
     }
 
   }

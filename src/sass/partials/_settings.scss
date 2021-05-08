@@ -1,12 +1,12 @@
 /* Variables */
 
-$color-dark: #333;
+$color-dark: rgb(66, 66, 66);
 $color-light: #fff;
-$color-main: #ff6b6b;
+$color-main: #ff0000;
+$color-secondary: #02b411;
 $color-warning: #f6b93b;
-$color-danger: #e55039;
+$color-danger: #e93802;
 $color-success: #78e08f;
-$color-booking: #e74c3c;
 
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Lato', sans-serif;
@@ -20,6 +20,8 @@ $transition: all .3s;
 $radius: 4px;
 
 $base-size: 12px;
+
+$width-mobile: 100%;
 
 /* Mixins */
 

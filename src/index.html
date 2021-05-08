@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Pizzeria</title>
+  <title>Guseppe Pizza</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
@@ -17,8 +17,8 @@
     <div class="container">
       <div class="header__wrapper">
         <div class="logo">
-          <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
-          <h2 class="logo__subtitle">the best homemade Italian food</h2>
+          <h1 class="logo__title">Guseppe</h1>
+          <h2 class="logo__subtitle">the best homemade Italian Pizza</h2>
         </div>
         <div class="main-nav hidden unactive">
           <a href="#order">Order</a>
@@ -26,7 +26,7 @@
         </div>
         <div id="cart" class="cart hidden unactive">
           <div class="cart__summary">
-            <span class="cart__total-number">5</span>
+            <span class="cart__total-number">0</span>
             <span class="cart__total-price">Total price: $<strong>0</strong></span>
             <i class="fas fa-chevron-down"></i>
             <i class="fas fa-shopping-cart cart__icon"></i>
@@ -186,7 +186,7 @@
             </div>
           </div>
         </div>
-        <div class="gallery-image-wrapper">
+        <div class="gallery-image-wrapper mobile">
           <div class="gallery-image">
             <img src="./images/main-page/pizza-7.jpg">
             <div class="icons-middle">
@@ -319,7 +319,6 @@
   </script>
   <script id="template-menu-product" type="text/x-handlebars-template">
     <article class="product"> <!-- product -->
-
         <header class="product__header">
           <h3 class="product__name no-spacing">{{ name }} <i class="fas fa-chevron-down product__icon"></i></h3>
           <p class="product__base-price no-spacing">${{ price }}</p>

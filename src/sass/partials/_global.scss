@@ -10,6 +10,11 @@ body {
   line-height: 1.7;
   font-weight: $font-normal;
   color: $color-dark;
+
+  @media (max-width: 767px) {
+    font-size: $base-size;
+  }
+
 }
 
 .container {
